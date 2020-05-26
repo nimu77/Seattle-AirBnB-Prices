@@ -15,18 +15,22 @@ column1 = dbc.Col(
     [
         dcc.Markdown(
             """
-        
-            ## Your Value Proposition
 
-            Emphasize how the app will benefit users. Don't emphasize the underlying technology.
+            ## Is AirBnB the new trend for budget travellers?
 
-            ✅ RUN is a running app that adapts to your fitness levels and designs personalized workouts to help you improve your running.
+            People love to travel. We all talk about how we want travel all around the world.
 
-            ❌ RUN is the only intelligent running app that uses sophisticated deep neural net machine learning to make your run smarter because we believe in ML driven workouts.
+            The sad truth about travelling is that it is expensive. People want to do as much as they can in short amount of time, because this will save them tons of money.
+
+            Major cities are a big attraction for tourist. Like I said before, travelling comes with a hefty price and in major cities it is only going to be more heftier.
+
+            This app covers Seattle region and based on your interest of where you want to stay in Seattle, it helps you predict what is the average price you should pay around that area.
+
+            I hope this app will help travellers all around the world who wants to visit Seattle in getting the best value for their money.
 
             """
         ),
-        dcc.Link(dbc.Button('Your Call To Action', color='primary'), href='/predictions')
+        dcc.Link(dbc.Button("Let's Begin!!!", color='primary'), href='/predictions')
     ],
     md=4,
 )
