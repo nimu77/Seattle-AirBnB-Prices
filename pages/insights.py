@@ -33,37 +33,48 @@ column1 = dbc.Col(
             should account for inflation and exclude market extremities like we are
             facing right now with COVID-19.
 
-
-
-
-
+            The baseline for predicting AirBnB rentals was $106.77, with a mean
+            absolute error of $49.46 on average. To improve the baseline, I first introduced linear
+            regression. Linear regression improved the mean absolute error to $34.30 on average.
+            This was a really good jump from $49 to $34, even though it is the most simple
+            model.
             """
         ),
-        html.Img(src='assets/airbnb.jpg', className='img-airbnb', style={'width':'80%'}),
+        html.Img(src='assets/linear_rel.jpg', className='linear',
+                 style={'width':'70%', 'height':'30%'}),
         html.Br(),
         html.Div([
 			html.Br(),
 			html.P(
 			"""
-			The next two graphs are called partial dependence plots.
-			The line represents change in prediction based on
-			adjusting the feature's value. In the graph below, predictions
-			are either positively or negatively affected by changing
-			your guitar brand from say, a Peavey to a Gibson.
-			"""),
-			html.Img(src='assets/brand_pdp.png', className='img-fluid')
-		]),
+            After, fitting Linear Regression, I fiited other regression models like
+            ridge, decision tree, random forest, and randomized search cv. Out of all these
+            models randomized cv was able to produce the best result without overfitting
+            the model and also giving the best mean absolute error on average. The mean
+            absolute error dropped down to $31.42.
+
+            I was also able to look at the feature importances of each feature towards the
+            target which is price. The graph below shows the feature importances of each
+            feature.
+			"""
+            ),
+        ]),
+		html.Img(src='assets/f_importance.jpg', className='feature_imp'),
 		html.Br(),
 		html.Div([
-			dcc.Markdown(
+			html.Br(),
+            html.P(
 			"""
-			In the chart below, you can see how an exclusive change in
-			the country of manufacture drives price prediction up or
-			down from a baseline.
-			"""),
-			html.Img(src='assets/country_pdp.png', className='img-fluid')
-		])
-    ],
+            Also, to see the best possible ways to find how important the feature really is
+            I tried Permuatation Importance. Permutation Importance shuffles one feature
+            at a time, keeping other features constant to see how important each feature
+            is if the value is not constant. Here, is the Permutation Importance for each
+            feature.
+			"""
+            ),
+        ]),
+        html.Img(src='assets/permutation.jpg', className='permutation'),
+	]
 )
 
 layout = dbc.Row([column1])

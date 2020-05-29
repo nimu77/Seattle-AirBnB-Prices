@@ -111,33 +111,8 @@ column2 = dbc.Col(
             placeholder='Enter here...',
             value=0,
             className='mb-5',
-
-        # dcc.Slider(
-        #     id='reviews',
-        #     min=0,
-        #     max=500,
-        #     step=1,
-        #     value=1,
-        #     marks = {0: '0',
-        #              50: '50',
-        #              100: '100',
-        #              150: '150',
-        #              200: '200',
-        #              250: '250',
-        #              300: '300',
-        #              350: '350',
-        #              400: '400',
-        #              450: '450',
-        #              500: '500'},
-        #     className='mb-5',
         ),
         dcc.Markdown('#### Latitude'),
-        # html.Label('Latitude Range from 47.508 to 47.723'),
-        # dcc.Input(
-        #     id='reviews',
-        #     placeholder='Enter a value...',
-        #     value=47.508,
-        #     className='mb-5',
         dcc.Slider(
             id='latitude',
             min=47.51,
@@ -163,87 +138,6 @@ column2 = dbc.Col(
     md=6
 )
 
-
-
-
-# column2 = dbc.Col(
-#     [
-#         dcc.Markdown('#### Bathrooms'),
-#         dcc.Slider(
-#             id='bathrooms',
-#             min=1,
-#             max=8,
-#             step=1,
-#             value=1,
-#             marks={1: '1',
-#                    2: '2',
-#                    3: '3',
-#                    4: '4',
-#                    5: '5',
-#                    6: '6',
-#                    7: '7',
-#                    8: '8'},
-#             className='mb-5',
-#         ),
-#         dcc.Markdown('#### Reviews'),
-#         dcc.Slider(
-#             id='reviews',
-#             min=0,
-#             max=500,
-#             step=1,
-#             value=1,
-#             marks = {0: '0',
-#                      50: '50',
-#                      100: '100',
-#                      150: '150',
-#                      200: '200',
-#                      250: '250',
-#                      300: '300',
-#                      350: '350',
-#                      400: '400',
-#                      450: '450',
-#                      500: '500'},
-#             className='mb-5',
-#         ),
-#         dcc.Markdown('#### Room Type'),
-#         dcc.Dropdown(
-#             id='room_type',
-#             options = [
-#                 {'label': 'Entire Home/Apt', 'value': '1'},
-#                 {'label': 'Private Room', 'value': '2'},
-#                 {'label': 'Shared Room', 'value': '3'},
-#             ],
-#             value = 'Entire Home/Apt',
-#             className='mb-5',
-#         ),
-#         dcc.Markdown('#### Latitude'),
-#         dcc.Slider(
-#             id='latitude',
-#             min=47.624349,
-#             max=47.722770,
-#             step=0.0000001,
-#             value=47.624349,
-#             marks={n: format(n) for n in np.arange(47.624349, 47.722771, .0000001)},
-#             className='mb-5',
-#         ),
-#         dcc.Markdown('#### Accommodates'),
-#         dcc.Slider(
-#             id='accommodates',
-#             min=1,
-#             max=24,
-#             step=0.1,
-#             value=1,
-#             marks={1: '1',
-#                    2: '2',
-#                    3: '3',
-#                    4: '4',
-#                    5: '5'},
-#             className='mb-5',
-#         ),
-#     ],
-#     md=6,
-# )
-#
 column3 = dbc.Col(
     [
         html.H2('You might find a room for...', className='mb-5'),
