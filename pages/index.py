@@ -5,6 +5,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 import plotly.express as px
+import matplotlib.pyplot as plt
 
 # Imports from this application
 from app import app
@@ -32,17 +33,19 @@ column1 = dbc.Col(
         ),
         dcc.Link(dbc.Button("Let's Begin!!!", color='primary'), href='/predictions')
     ],
-    md=4,
+    md=6,
 )
 
-gapminder = px.data.gapminder()
-fig = px.scatter(gapminder.query("year==2007"), x="gdpPercap", y="lifeExp", size="pop", color="continent",
-           hover_name="country", log_x=True, size_max=60)
+# gapminder = px.data.gapminder()
+# fig = px.scatter(gapminder.query("year==2007"), x="gdpPercap", y="lifeExp", size="pop", color="continent",
+#            hover_name="country", log_x=True, size_max=60)
 
 column2 = dbc.Col(
     [
-        dcc.Graph(figure=fig),
-    ]
+        html.Img(src='assets/airbnb.jpeg', className='img-airbnb')
+        # dcc.Graph(figure=fig),
+    ],
+    md=6
 )
 
 layout = dbc.Row([column1, column2])

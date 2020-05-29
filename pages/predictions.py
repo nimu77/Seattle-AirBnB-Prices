@@ -33,16 +33,16 @@ column1 = dbc.Col(
         dcc.Dropdown(
             id='address',
             options = [
-                {'label': 'Seattle', 'value': 'Seattle'},
-                {'label': 'Bellevue', 'value': 'Bellevue'},
-                {'label': 'Kirkland', 'value': 'Kirkland'},
-                {'label': 'Redmond', 'value': 'Redmond'},
-                {'label': 'Newcastle', 'value': 'Newcastle'},
-                {'label': 'Mercer Island', 'value': 'Mercer Island'},
-                {'label': 'Renton', 'value': 'Renton'},
-                {'label': 'Other', 'value': 'Other'},
+                {'label': 'Seattle', 'value': '2'},
+                {'label': 'Bellevue', 'value': '3'},
+                {'label': 'Kirkland', 'value': '1'},
+                {'label': 'Redmond', 'value': '4'},
+                {'label': 'Newcastle', 'value': '6'},
+                {'label': 'Mercer Island', 'value': '6'},
+                {'label': 'Renton', 'value': '5'},
+                {'label': 'Other', 'value': '8'},
             ],
-            value = 'Seattle',
+            value = '2',
             className='mb-5',
         ),
         dcc.Markdown('#### Room Type'),
@@ -53,7 +53,7 @@ column1 = dbc.Col(
                 {'label': 'Private Room', 'value': '2'},
                 {'label': 'Shared Room', 'value': '3'},
             ],
-            value = 'Entire Home/Apt',
+            value = 1,
             className='mb-5',
         ),
         dcc.Markdown('#### Overall Satisfaction'),
@@ -86,13 +86,13 @@ column1 = dbc.Col(
 
 column2 = dbc.Col(
     [
-        dcc.Markdown('## haha', className='mb-5'),
+        dcc.Markdown('## ', className='mb-5'),
         dcc.Markdown('#### Bathrooms'),
         dcc.Slider(
             id='bathrooms',
             min=1,
             max=8,
-            step=1,
+            step=0.5,
             value=1,
             marks={1: '1',
                    2: '2',
@@ -105,62 +105,63 @@ column2 = dbc.Col(
             className='mb-5',
         ),
         dcc.Markdown('#### Reviews'),
-        dcc.Slider(
+        dcc.Input(
             id='reviews',
-            min=0,
-            max=500,
-            step=1,
-            value=1,
-            marks = {0: '0',
-                     50: '50',
-                     100: '100',
-                     150: '150',
-                     200: '200',
-                     250: '250',
-                     300: '300',
-                     350: '350',
-                     400: '400',
-                     450: '450',
-                     500: '500'},
+            type='number',
+            placeholder='Enter here...',
+            value=0,
             className='mb-5',
+
+        # dcc.Slider(
+        #     id='reviews',
+        #     min=0,
+        #     max=500,
+        #     step=1,
+        #     value=1,
+        #     marks = {0: '0',
+        #              50: '50',
+        #              100: '100',
+        #              150: '150',
+        #              200: '200',
+        #              250: '250',
+        #              300: '300',
+        #              350: '350',
+        #              400: '400',
+        #              450: '450',
+        #              500: '500'},
+        #     className='mb-5',
         ),
         dcc.Markdown('#### Latitude'),
+        # html.Label('Latitude Range from 47.508 to 47.723'),
+        # dcc.Input(
+        #     id='reviews',
+        #     placeholder='Enter a value...',
+        #     value=47.508,
+        #     className='mb-5',
         dcc.Slider(
             id='latitude',
-            min=47.508078,
-            max=47.722770,
-            step=0.001,
-            value=47.508078,
-            marks={n: format(n) for n in np.arange(47.508078, 47.74)},
+            min=47.51,
+            max=47.723,
+            step=0.01,
+            value=47.72,
+            marks={n: format(n) for n in np.arange(47.51, 47.72, 0.05).round(decimals=2)},
+            vertical=False,
             className='mb-5',
         ),
         dcc.Markdown('#### Longitude'),
         dcc.Slider(
             id='longitude',
-            min=-122.420918,
-            max=-122.115498,
-            step=0.001,
-            value=-122.420918,
-            marks={n: format(n) for n in np.arange(-122.420918, -122.115498)},
+            min=-122.42,
+            max=-122.11,
+            step=0.01,
+            value=-122.42,
+            marks={n: format(n) for n in np.arange(-122.42, -122.11, 0.05).round(decimals=2)},
+            vertical=False,
             className='mb-5',
         ),
     ],
     md=6
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -245,30 +246,30 @@ column2 = dbc.Col(
 #
 column3 = dbc.Col(
     [
-        html.H2('Price per day', className='mb-5'),
+        html.H2('You might find a room for...', className='mb-5'),
         html.Div(id='prediction-content', className='lead')
 
     ]
 )
 #
 #
-layout = dbc.Row([column1, column2, column3])
+
 # layout = dbc.Row([column1, column2, column3])
 #
 @app.callback(
     Output('prediction-content', 'children'),
-    [Input('bedrooms', 'value'), Input('address', 'value'), Input('room_type', 'value'),
-    Input('overall_satisfaction', 'value'), Input('accommodates', 'value'),
-    Input('bathrooms', 'value'), Input('reviews', 'value'),
-    Input('latitude', 'value'), Input('longitude', 'value')],
+    [Input('reviews', 'value'), Input('overall_satisfaction', 'value'),
+    Input('accommodates', 'value'),Input('bedrooms', 'value'),
+    Input('bathrooms', 'value'),Input('latitude', 'value'), Input('longitude', 'value'),
+    Input('room_type', 'value'), Input('address', 'value')],
 )
-def predict(bedrooms, address, room_type, overall_satisfaction, accommodates,
-            bathrooms, reviews, latitude, longitude):
+def predict(reviews, overall_satisfaction, accommodates, bedrooms,
+            bathrooms, latitude, longitude, room_type, address):
     df = pd.DataFrame(
-        columns=['bedrooms', 'address', 'room_type', 'overall_satisfaction', 'accommodates',
-                 'bathrooms', 'reviews', 'latitude', 'longitude'],
-        data=[[bedrooms, address, room_type, overall_satisfaction, accommodates,
-               bathrooms, reviews, latitude, longitude]]
+        columns=['reviews', 'overall_satisfaction', 'accommodates', 'bedrooms',
+                'bathrooms', 'latitude', 'longitude', 'room_type', 'address'],
+        data=[[reviews, overall_satisfaction, accommodates, bedrooms,
+               bathrooms, latitude, longitude, room_type, address]]
     )
     y_pred = pipeline.predict(df)[0]
     return f'${y_pred:.0f} per night'
@@ -279,3 +280,4 @@ def predict(bedrooms, address, room_type, overall_satisfaction, accommodates,
 # )
 # def update_output_div(input_value):
 #     return input_value
+layout = dbc.Row([column1, column2, column3])
