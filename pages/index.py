@@ -17,7 +17,7 @@ column1 = dbc.Col(
         dcc.Markdown(
             """
 
-            ## Is AirBnB the new trend for budget travellers?
+            ## How about AirBnB?
 
             People love to travel. We all talk about how we want travel all around the world.
 
@@ -42,7 +42,7 @@ column1 = dbc.Col(
 
 column2 = dbc.Col(
     [
-        html.Img(src='assets/airbnb.jpeg', className='img-airbnb')
+        html.Img(src='assets/airbnb.jpg', className='img-airbnb', style={'width':'120%'})
         # dcc.Graph(figure=fig),
     ],
     md=6
