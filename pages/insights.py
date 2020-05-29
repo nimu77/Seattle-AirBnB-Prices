@@ -47,7 +47,7 @@ column1 = dbc.Col(
 			html.Br(),
 			html.P(
 			"""
-            After, fitting Linear Regression, I fiited other regression models like
+            After, fitting Linear Regression, I fitted other regression models like
             ridge, decision tree, random forest, and randomized search cv. Out of all these
             models randomized cv was able to produce the best result without overfitting
             the model and also giving the best mean absolute error on average. The mean
