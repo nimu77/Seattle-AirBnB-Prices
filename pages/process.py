@@ -40,7 +40,7 @@ column1 = dbc.Col(
             ![](assets/pdp_one.jpg)
 
             Now, let's look at the pdp plot with two features.  
-            ![](assets/pdp_two.jpg)
+            ![](assets/pdp_with_two.jpg)
 
             The most interesting part of this whole project was to look at the shapely
             plot, and how it is able to show us which features affect the target
